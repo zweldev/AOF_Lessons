@@ -1,4 +1,4 @@
-
+import 'package:aof_lessons/namedRoutes/genInit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ import 'namedRoutes/school.dart';
 import 'namedRoutes/unknown.dart';
 
 void main() {
-  Api_Services.instance();
+  // Api_Services.instance();
   // Api_Services.getData('https://dog.ceo/api/breeds/image/random');
   runApp(MyApp());
 }
@@ -27,33 +27,42 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    //onGeneratedRoutes
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
       ///Named Routes
-      initialRoute: "home",
-      routes: {
-        "home": (context) => Home(),
-        "bar": (context) => Bar(),
-        "office": (context) => Office(),
-        "school": (context) => School(),
-      },
-      onUnknownRoute: (settings) =>
-          MaterialPageRoute(builder: (context) => UnknownScreen()),
+      // initialRoute: "home",
+      // routes: {
+      //   "home": (context) => Home(),
+      //   "bar": (context) => Bar(),
+      //   "office": (context) => Office(),
+      //   "school": (context) => School(),
+      // },
+      // onUnknownRoute: (settings) =>
+      //     MaterialPageRoute(builder: (context) => UnknownScreen()),
       //named routes
 
-      onGenerateRoute: (setting) {
-        switch (setting.name) {
-          // case "/":
-          //   return MaterialPageRoute(builder: (context) => ImageProviderExp());
+      //ongenerateroute
+      onGenerateInitialRoutes: ((initialRoute) {
+        return [MaterialPageRoute(builder: (con) => OngenerateInitialPage())];
+      }),
 
-          case "/drawer":
-            return MaterialPageRoute(builder: (context) => DrawerExp());
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case 'home':
+            return MaterialPageRoute(builder: (con) => Home());
 
-          case "/img_search":
-            return MaterialPageRoute(
-                builder: (context) => ImageSearchHomeScreen());
+          case 'school':
+            return MaterialPageRoute(builder: (con) => School());
+
+          case 'office':
+            return MaterialPageRoute(builder: (con) => Office());
+
+          case 'bar':
+            return MaterialPageRoute(builder: (con) => Bar());
+
+          default:
+            return MaterialPageRoute(builder: (con) => UnknownScreen());
         }
       },
       //ongenerated initial routes
@@ -64,4 +73,4 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-// 1:01:41
+// Guide 18 ongenerate route 
