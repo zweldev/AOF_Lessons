@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 
-class OngenerateInitialPage extends StatefulWidget {
-  const OngenerateInitialPage({super.key});
+class GeneratedUnKnownRouteEXP extends StatefulWidget {
+  const GeneratedUnKnownRouteEXP({super.key});
 
   @override
-  State<OngenerateInitialPage> createState() => _OngenerateInitialPageState();
+  State<GeneratedUnKnownRouteEXP> createState() =>
+      _GeneratedUnKnownRouteEXPState();
 }
 
-class _OngenerateInitialPageState extends State<OngenerateInitialPage> {
+class _GeneratedUnKnownRouteEXPState extends State<GeneratedUnKnownRouteEXP> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Initial Page"),
+        title: Text("Generated Unknown Route"),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Text("Generate Initial Route"),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed("home");
-                },
-                child: Text("Go Home"))
-          ],
-        ),
+      body: Container(
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("home");
+            },
+            child: Text("Go Home, Your lost!")),
       ),
     );
   }

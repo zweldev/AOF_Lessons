@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 
-class Bar extends StatefulWidget {
-  const Bar({super.key});
+class BarPageEXP extends StatelessWidget {
+  final String title;
+  const BarPageEXP({super.key, required this.title});
 
-  @override
-  State<Bar> createState() => _BarState();
-}
-
-class _BarState extends State<Bar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Bar"),),
-      body: Center(
-        child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed("home");
-            },
-            child: Text("Go to Home")),
+      appBar: AppBar(
+        title: Text("Bar"),
+      ),
+      body: Container(
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .pushNamed("home", arguments: title);
+              },
+              child: Text(
+                  // for Named Route
+                  "${title}")),
+        ),
       ),
     );
   }

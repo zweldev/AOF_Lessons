@@ -1,49 +1,42 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
-class ImageNetwork extends StatelessWidget {
-  const ImageNetwork({Key? key}) : super(key: key);
+class ImageEXP extends StatelessWidget {
+  const ImageEXP({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Image Network"),
+        title: Text("Image EXP"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: 400,
-            height: 400,
-            color: Colors.green,
-            child: Image.network(
-              'https://foodburma.com/wp-content/uploads/2021/12/friends.jpg',
-              loadingBuilder: ((context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: CircularProgressIndicator(),
-                );
-              }),
-              errorBuilder: (_, a, b) => Icon(Icons.error),
-              width: 100,
-              height: 100,
-              // fit: BoxFit.contain,
-              alignment: Alignment.bottomCenter,
-              repeat: ImageRepeat.repeat,
+          Center(
+            child: SizedBox(
+              width: 500,
+              height: 500,
+              child: Image.network(
+                "https://wallpapers.com/images/file/lamborghine-huracan-in-forza-4-n2zp7ktjjr6imn3u.jpg",
+                // repeat: ImageRepeat.repeat,
+                alignment: Alignment.bottomLeft,
+                width: 300,
+                height: 300,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  return Icon(Icons.error);
+                },
+                loadingBuilder: (context, child, loadingProgress) {
+                  print(loadingProgress);
+                  // return CircularProgressIndicator();
+                  if (loadingProgress == null) return child;
+                  return CircularProgressIndicator();
+                },
+              ),
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Image.file(File("image path from phone")),
+          )
         ],
       ),
     );
   }
 }
-
-
-// Guide 19 1.image 9:35

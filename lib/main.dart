@@ -1,10 +1,9 @@
+import 'package:aof_lessons/courseWorks/image_network.dart';
+import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
+import 'package:aof_lessons/courseWorks/image_search/service/api_service.dart';
+import 'package:aof_lessons/courseWorks/image_search/view/home.dart';
 import 'package:aof_lessons/namedRoutes/genInit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'ImageSearchApp/services/api_services.dart';
-import 'ImageSearchApp/view/image_search_home.dart';
-import 'courseWorks/drawer.dart';
 import 'namedRoutes/bar.dart';
 import 'namedRoutes/home.dart';
 import 'namedRoutes/office.dart';
@@ -12,8 +11,7 @@ import 'namedRoutes/school.dart';
 import 'namedRoutes/unknown.dart';
 
 void main() {
-  // Api_Services.instance();
-  // Api_Services.getData('https://dog.ceo/api/breeds/image/random');
+  API_service.instance().available;
   runApp(MyApp());
 }
 
@@ -30,6 +28,22 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
+      initialRoute: '\imgHome',
+
+      // initialRoute: 'home',
+
+      // routes: {
+      //   'home': (context) => HomePageEXP(),
+      //   'school': (context) => SchoolPageEXP(),
+      //   'office' : (context) => OfficePageEXP(),
+      //   'bar': (context) => BarPageEXP(),
+      // },
+
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+            builder: (context) => GeneratedUnKnownRouteEXP());
+      },
+
       ///Named Routes
       // initialRoute: "home",
       // routes: {
@@ -43,32 +57,49 @@ class _MyAppState extends State<MyApp> {
       //named routes
 
       //ongenerateroute
-      onGenerateInitialRoutes: ((initialRoute) {
-        return [MaterialPageRoute(builder: (con) => OngenerateInitialPage())];
-      }),
+      // onGenerateInitialRoutes: ((initialRoute) {
+      //   return [
+      //     MaterialPageRoute(builder: (con) => GeneratedUnKnownRouteEXP())
+      //   ];
+      // }),
 
       onGenerateRoute: (settings) {
+        print("Ongenerated Route ${settings.arguments}");
         switch (settings.name) {
           case 'home':
-            return MaterialPageRoute(builder: (con) => Home());
+            print("Route name is ${settings.name}");
+            return MaterialPageRoute(builder: (con) => HomePageEXP());
 
           case 'school':
-            return MaterialPageRoute(builder: (con) => School());
+            print("Route name is ${settings.name}");
+            return MaterialPageRoute(
+                builder: (con) => SchoolPageEXP(), fullscreenDialog: true);
 
           case 'office':
-            return MaterialPageRoute(builder: (con) => Office());
+            print("Route name is ${settings.name}");
+            return MaterialPageRoute(builder: (con) => OfficePageEXP());
 
           case 'bar':
-            return MaterialPageRoute(builder: (con) => Bar());
+            print("Route name is ${settings.name}");
+            return MaterialPageRoute(
+              builder: (con) => BarPageEXP(
+                title: settings.arguments?.toString() ?? "random title",
+              ),
+            );
+
+          case 'imageNetworkEXP':
+            return MaterialPageRoute(builder: (context) => ImageEXP());
+
+          case '\imgHome':
+            return MaterialPageRoute(
+                builder: (context) => ImageSearchViewEXP());
 
           default:
-            return MaterialPageRoute(builder: (con) => UnknownScreen());
+            print("Route name is ${settings.name}");
+            return MaterialPageRoute(builder: (con) => UnknownPageEXP());
         }
       },
-      //ongenerated initial routes
-      // onGenerateInitialRoutes: (initialRoute) {
-      //   return [MaterialPageRoute(builder: (context) => ImageNetwork())];
-      // },
+      // ongenerated initial routes
     );
   }
 }

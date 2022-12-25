@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
 
-class Office extends StatefulWidget {
-  const Office({super.key});
+class OfficePageEXP extends StatefulWidget {
+  const OfficePageEXP({super.key});
 
   @override
-  State<Office> createState() => _OfficeState();
+  State<OfficePageEXP> createState() => _OfficePageEXPState();
 }
 
-class _OfficeState extends State<Office> {
+class _OfficePageEXPState extends State<OfficePageEXP> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Office"),
-        leading: IconButton(
-            onPressed: () {
-
-              // value added in result
-              Navigator.of(context).pop("Well Done");
-            },
-            icon: Icon(Icons.arrow_back_ios)),
       ),
-      body: Center(
+      body: Container(
         child: ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushNamed("bar");
+              Navigator.of(context).pushNamed("bar",  arguments: "Office Argument");
             },
             child: Text("Go to Bar")),
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
       ),
     );
   }

@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomePageEXP extends StatefulWidget {
+  const HomePageEXP({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePageEXP> createState() => _HomePageEXPState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageEXPState extends State<HomePageEXP> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Home Page"),
       ),
-      body: Center(
-        child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacementNamed("school", arguments: "School twrr mel");
-            },
-            child: Text("Go to School")),
+      body: Container(
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("school", arguments: "Home Argument");
+              },
+              child: Text("Go to School")),
+        ),
+        decoration: BoxDecoration(color: Colors.white),
       ),
     );
   }
 }
-
-
-// pushNamed, pushNamedandremoveuntil are futures 
