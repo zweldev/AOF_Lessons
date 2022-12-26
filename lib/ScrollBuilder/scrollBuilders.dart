@@ -6,7 +6,6 @@
 import 'package:aof_lessons/ScrollBuilder/singleChildScrollView.dart';
 import 'package:flutter/material.dart';
 
-
 class ScrollBuilders extends StatefulWidget {
   ScrollBuilders({Key? key}) : super(key: key);
 
@@ -26,9 +25,9 @@ class _ScrollBuildersState extends State<ScrollBuilders> {
       // body: ListViewCustomExp(),
       // body: GridViewBuilder(),
       // body: ListViewExp(),
-      body: singleChild(),
+      // body: singleChild(),
       // body: GridViewCountExp(),
-      // body: GridViewExtent(),
+      body: GridViewExtent(),
       // body: SingleChildScrollViewExp(),
     );
   }
@@ -140,7 +139,7 @@ class _GridViewExtentState extends State<GridViewExtent> {
   @override
   Widget build(BuildContext context) {
     return GridView.extent(
-      maxCrossAxisExtent: 100,
+      maxCrossAxisExtent: 300,
       children: [for (int i = 0; i < 100; i++) Container02(i: i)],
     );
   }

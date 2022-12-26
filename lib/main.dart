@@ -1,3 +1,6 @@
+import 'package:aof_lessons/ScrollBuilder/scrollBuilders.dart';
+import 'package:aof_lessons/ScrollBuilder/scrollTest.dart';
+import 'package:aof_lessons/ScrollBuilder/singleChildScrollView.dart';
 import 'package:aof_lessons/courseWorks/image_network.dart';
 import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
 import 'package:aof_lessons/courseWorks/image_search/service/api_service.dart';
@@ -28,7 +31,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      initialRoute: '\imgHome',
+      // initialRoute: 'scrollBuilders',
+      initialRoute: 'scrollTest',
 
       // initialRoute: 'home',
 
@@ -93,6 +97,16 @@ class _MyAppState extends State<MyApp> {
           case '\imgHome':
             return MaterialPageRoute(
                 builder: (context) => ImageSearchViewEXP());
+
+          case 'singleChildScroll':
+            return MaterialPageRoute(
+                builder: (context) => SingleChildScrollViewExp());
+
+          case 'scrollTest':
+            return MaterialPageRoute(builder: (context) => ScrollTestPageEXP());
+
+          case 'scrollBuilders':
+            return MaterialPageRoute(builder: (context) => ScrollBuilders());
 
           default:
             print("Route name is ${settings.name}");

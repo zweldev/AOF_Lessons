@@ -15,8 +15,8 @@ class _SingleChildScrollViewExpState extends State<SingleChildScrollViewExp> {
       appBar: AppBar(
         title: Text('Scroll Builder'),
       ),
-      body: singleChild(),
-      // body: GridViewExp(),
+      // body: singleChild(),
+      body: GridViewExp(),
       // body: ListViewExp(),
     );
   }
@@ -41,9 +41,9 @@ class _singleChildState extends State<singleChild> {
     return SingleChildScrollView(
       reverse: false,
       controller: _controller,
-      physics: AlwaysScrollableScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      child: Column(
+      // physics: AlwaysScrollableScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      child: Row(
         children: [
           for (int i = 0; i < 100; i++)
             Padding(
@@ -64,8 +64,8 @@ class ListViewExp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       reverse: false,
-      itemExtent: 100,
-      children: [for (int i = 0; i < 100; i++) Container01(i: i)],
+      // itemExtent: 50,
+      children: [for (int i = 0; i < 70; i++) Container01(i: i)],
     );
   }
 }
@@ -82,10 +82,10 @@ class GridViewExp extends StatelessWidget {
         ],
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            mainAxisSpacing: 50,
+            mainAxisSpacing: 10,
             mainAxisExtent: 200,
-            crossAxisSpacing: 50,
-            childAspectRatio: 20));
+            crossAxisSpacing: 100,
+            childAspectRatio: 1 / 3));
   }
 }
 
