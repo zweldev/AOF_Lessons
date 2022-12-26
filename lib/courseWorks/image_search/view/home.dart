@@ -13,6 +13,7 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
   List<String> textToShow = [];
   @override
   Widget build(BuildContext context) {
+    API_service.instance();
     // print(API_service.instance().available);
     return Scaffold(
       appBar: AppBar(
@@ -26,6 +27,7 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
               StarlightTypeAhead(
                   controller: TextEditingController(),
                   data: API_service.instance().available?.dogs,
+                  // data: [],
                   width: MediaQuery.of(context).size.width,
                   height: 600,
                   itemHeight: 50,

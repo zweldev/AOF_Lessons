@@ -15,6 +15,7 @@ import 'namedRoutes/unknown.dart';
 
 void main() {
   API_service.instance().available;
+  print("Data is ${API_service.instance().available?.dogs}");
   runApp(MyApp());
 }
 
@@ -32,7 +33,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
 
       // initialRoute: 'scrollBuilders',
-      initialRoute: 'scrollTest',
+      // initialRoute: 'scrollTest',
+      initialRoute: 'imgHome',
 
       // initialRoute: 'home',
 
@@ -68,7 +70,6 @@ class _MyAppState extends State<MyApp> {
       // }),
 
       onGenerateRoute: (settings) {
-        print("Ongenerated Route ${settings.arguments}");
         switch (settings.name) {
           case 'home':
             print("Route name is ${settings.name}");
@@ -94,7 +95,7 @@ class _MyAppState extends State<MyApp> {
           case 'imageNetworkEXP':
             return MaterialPageRoute(builder: (context) => ImageEXP());
 
-          case '\imgHome':
+          case 'imgHome':
             return MaterialPageRoute(
                 builder: (context) => ImageSearchViewEXP());
 
