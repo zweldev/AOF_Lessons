@@ -1,6 +1,5 @@
 import 'package:aof_lessons/courseWorks/image_search/service/api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:starlight_type_ahead/starlight_type_ahead.dart';
 
 class ImageSearchViewEXP extends StatefulWidget {
   const ImageSearchViewEXP({super.key});
@@ -24,19 +23,28 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
         child: Center(
           child: Column(
             children: [
-              StarlightTypeAhead(
-                  controller: TextEditingController(),
-                  data: API_service.instance().available?.dogs,
-                  // data: [],
-                  width: MediaQuery.of(context).size.width,
-                  height: 600,
-                  itemHeight: 50,
-                  itemBuilder: (e) {
-                    return Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text("$e"),
-                    );
-                  })
+              TextField(
+                onChanged: (value) {
+                  List<String>? _data = API_service.instance().available?.dogs;
+                  final List<String>? result = _data
+                      ?.where((element) => element
+                          .toLowerCase()
+                          .replaceAll(" ", "")
+                          .contains(value.toLowerCase().replaceAll(" ", "")))
+                      .toList();
+                  textToShow.clear();
+                  setState(() {});
+                  if (result?.isNotEmpty == true) {
+                    textToShow.clear();
+                    textToShow.addAll(result!);
+                    setState(() {});
+                  } else {
+                    textToShow.clear();
+                    setState(() {});
+                  }
+                },
+              ),
+              for (String x in textToShow) Text(x),
             ],
           ),
         ),
