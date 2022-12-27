@@ -5,6 +5,10 @@ import 'package:aof_lessons/courseWorks/image_network.dart';
 import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
 import 'package:aof_lessons/courseWorks/image_search/service/api_service.dart';
 import 'package:aof_lessons/courseWorks/image_search/view/home.dart';
+import 'package:aof_lessons/courseWorks/indicators.dart';
+import 'package:aof_lessons/courseWorks/sizedbox.dart';
+import 'package:aof_lessons/courseWorks/willpopscope.dart';
+import 'package:aof_lessons/courseWorks/wrap.dart';
 import 'package:aof_lessons/namedRoutes/genInit.dart';
 import 'package:flutter/material.dart';
 import 'namedRoutes/bar.dart';
@@ -14,7 +18,7 @@ import 'namedRoutes/school.dart';
 import 'namedRoutes/unknown.dart';
 
 void main() {
-  API_service.instance(); 
+  API_service.instance();
   runApp(MyApp());
 }
 
@@ -33,7 +37,7 @@ class _MyAppState extends State<MyApp> {
 
       // initialRoute: 'scrollBuilders',
       // initialRoute: 'scrollTest',
-      initialRoute: 'imgHome',
+      // initialRoute: 'imgHome',
 
       // initialRoute: 'home',
 
@@ -113,6 +117,9 @@ class _MyAppState extends State<MyApp> {
             return MaterialPageRoute(builder: (con) => UnknownPageEXP());
         }
       },
+
+      onGenerateInitialRoutes: (initialRoute) =>
+          [MaterialPageRoute(builder: (context) => WillPopScopeEXP())],
       // ongenerated initial routes
     );
   }
