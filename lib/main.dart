@@ -14,8 +14,7 @@ import 'namedRoutes/school.dart';
 import 'namedRoutes/unknown.dart';
 
 void main() {
-  API_service.instance().available;
-  print("Data is ${API_service.instance().available?.dogs}");
+  API_service.instance(); 
   runApp(MyApp());
 }
 
