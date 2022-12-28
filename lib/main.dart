@@ -119,7 +119,7 @@ class _MyAppState extends State<MyApp> {
       },
 
       onGenerateInitialRoutes: (initialRoute) =>
-          [MaterialPageRoute(builder: (context) => WillPopScopeEXP())],
+          [MaterialPageRoute(builder: (context) => ImageSearchViewEXP())],
       // ongenerated initial routes
     );
   }
