@@ -1,13 +1,16 @@
 import 'package:aof_lessons/ScrollBuilder/scrollBuilders.dart';
 import 'package:aof_lessons/ScrollBuilder/scrollTest.dart';
 import 'package:aof_lessons/ScrollBuilder/singleChildScrollView.dart';
+import 'package:aof_lessons/courseWorks/futurebuilder.dart';
 import 'package:aof_lessons/courseWorks/image_network.dart';
 import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
 import 'package:aof_lessons/courseWorks/image_search/service/api_service.dart';
 import 'package:aof_lessons/courseWorks/image_search/view/home.dart';
 import 'package:aof_lessons/courseWorks/image_search/view/img_detail.dart';
 import 'package:aof_lessons/courseWorks/indicators.dart';
+import 'package:aof_lessons/courseWorks/listtile.dart';
 import 'package:aof_lessons/courseWorks/sizedbox.dart';
+import 'package:aof_lessons/courseWorks/streambuilder.dart';
 import 'package:aof_lessons/courseWorks/willpopscope.dart';
 import 'package:aof_lessons/courseWorks/wrap.dart';
 import 'package:aof_lessons/namedRoutes/genInit.dart';
@@ -38,7 +41,7 @@ class _MyAppState extends State<MyApp> {
 
       // initialRoute: 'scrollBuilders',
       // initialRoute: 'scrollTest',
-      // initialRoute: 'imgHome',
+      initialRoute: 'listTileEXP',
 
       // initialRoute: 'home',
 
@@ -113,10 +116,15 @@ class _MyAppState extends State<MyApp> {
           case 'scrollBuilders':
             return MaterialPageRoute(builder: (context) => ScrollBuilders());
 
+            case 'listTileEXP':
+            return MaterialPageRoute(builder: (context) => ListTileEXP());
+
           case 'search/detail':
             return MaterialPageRoute(
                 builder: (builder) =>
                     ImageDetailViewEXP(imgUrl: settings.arguments.toString()));
+
+          
           default:
             print("Route name is ${settings.name}");
             return MaterialPageRoute(builder: (con) => UnknownPageEXP());
@@ -124,7 +132,7 @@ class _MyAppState extends State<MyApp> {
       },
 
       onGenerateInitialRoutes: (initialRoute) =>
-          [MaterialPageRoute(builder: (context) => ImageSearchViewEXP())],
+          [MaterialPageRoute(builder: (context) =>StreamBuilderEXP())],
       // ongenerated initial routes
     );
   }
