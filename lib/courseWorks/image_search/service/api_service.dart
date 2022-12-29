@@ -43,10 +43,12 @@ class API_service extends _API {
   }
 
   Future<ImageModel?> getDog(String dogUrl) async {
-    final Map<String, dynamic>? dogImg = await get( "https://dog.ceo/api/breed/$dogUrl/images/random");
+    final Map<String, dynamic>? dogImg =
+        await get("https://dog.ceo/api/breed/$dogUrl/images/random");
     if (dogImg == null) {
       return null;
     }
+    if (dogImg['status'] == "error") return null;
     return ImageModel.fromJSON(dogImg);
   }
 

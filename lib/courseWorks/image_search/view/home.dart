@@ -1,5 +1,6 @@
 import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
 import 'package:aof_lessons/courseWorks/image_search/service/api_service.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ImageSearchViewEXP extends StatefulWidget {
@@ -113,7 +114,7 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                if (trySearch)
+                if (trySearch) ...[
                   Expanded(
                     child: TextField(
                       cursorColor: Colors.white,
@@ -156,8 +157,9 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
                       },
                       onChanged: (value) {
                         if (value.isEmpty) {
+                          textToShow.clear();
                           setState(() {});
-                          // textToShow.clear();
+
                           return;
                         }
 
@@ -176,7 +178,20 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
                       },
                     ),
                   ),
-                if (!trySearch) ...[
+                ] else if (!trySearch) ...[
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Dogs",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                   IconButton(
                       color: Colors.white,
                       splashRadius: 20,
@@ -202,6 +217,8 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
                           splashColor: Colors.grey,
                           onTap: () {
                             insertData(textToShow[i]);
+                            resultCondition = dogResult.loading;
+                            searchData();
                           },
                           child: Container(
                               height: 45,
@@ -220,13 +237,38 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
                   backgroundColor: Colors.amber,
                 ),
               ),
-            )
+            ),
           ] else if (resultCondition == dogResult.success) ...[
             Expanded(
-              child: Center(
-                child: Text("Success"),
-              ),
-            )
+                child: RefreshIndicator(
+                    onRefresh: searchData,
+                    color: Colors.red,
+                    child: GridView.count(
+                      padding: EdgeInsets.only(bottom: 20),
+                      crossAxisCount: 2,
+                      children: dogImages
+                          .map((e) => InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                      'search/detail',
+                                      arguments: e.image);
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(0))),
+                                  child: CachedNetworkImage(
+                                      fit: BoxFit.cover,
+                                      imageUrl: e.image,
+                                      placeholder: (_, s) => Center(
+                                          child: CircularProgressIndicator())),
+                                ),
+                              ))
+                          .toList(),
+                    )))
+            // Card(
+            //         child: CachedNetworkImage(imageUrl: dogImages.map((e) => e.image), placeholder: (_,s) => CircularProgressIndicator(),),
+            //       )
           ] else ...[
             Expanded(
               child: Center(

@@ -5,6 +5,7 @@ import 'package:aof_lessons/courseWorks/image_network.dart';
 import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
 import 'package:aof_lessons/courseWorks/image_search/service/api_service.dart';
 import 'package:aof_lessons/courseWorks/image_search/view/home.dart';
+import 'package:aof_lessons/courseWorks/image_search/view/img_detail.dart';
 import 'package:aof_lessons/courseWorks/indicators.dart';
 import 'package:aof_lessons/courseWorks/sizedbox.dart';
 import 'package:aof_lessons/courseWorks/willpopscope.dart';
@@ -112,6 +113,10 @@ class _MyAppState extends State<MyApp> {
           case 'scrollBuilders':
             return MaterialPageRoute(builder: (context) => ScrollBuilders());
 
+          case 'search/detail':
+            return MaterialPageRoute(
+                builder: (builder) =>
+                    ImageDetailViewEXP(imgUrl: settings.arguments.toString()));
           default:
             print("Route name is ${settings.name}");
             return MaterialPageRoute(builder: (con) => UnknownPageEXP());
