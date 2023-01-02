@@ -1,7 +1,11 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:aof_lessons/courseWorks/image_search/model/availabledogs.dart';
 import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
+
+Connectivity _connectivity = Connectivity();
 
 class _API {
   /**
@@ -24,13 +28,39 @@ class _API {
 }
 
 class API_service extends _API {
+  void dispose() {
+    _instance = null;
+    _streamController.close();
+  }
+
+  StreamController<bool> _streamController = StreamController.broadcast();
+  Stream<bool> get stream => _streamController.stream;
+
   AvailableDogs? available;
 
-//constructor
+  //constructor
   API_service._() {
-    getDogs().then((value) {
-      available = value;
-      print("available htal htae pee per v ${available?.dogs}");
+    _connectivity.checkConnectivity().then((value) {
+      //if there is no connection, input data will be false
+      //if there is connection, input data will be true
+      _streamController.sink.add(value != ConnectivityResult.none);
+    });
+
+    _connectivity.onConnectivityChanged.listen(
+      (ConnectivityResult event) {
+        print("Connectivity is $event");
+        _streamController.sink.add(event != ConnectivityResult.none);
+      },
+    );
+
+    stream.listen((event) {
+      if (event) {
+        if (available == null) {
+          getDogs().then((value) {
+            available = value;
+          });
+        }
+      }
     });
   }
 
@@ -38,7 +68,8 @@ class API_service extends _API {
   static API_service? _instance;
   static API_service instance() {
     _instance ??= API_service._();
-    print("D mar $_instance");
+    // print("D mar $_instance");
+
     return _instance!;
   }
 
@@ -54,10 +85,12 @@ class API_service extends _API {
 
   Future<AvailableDogs?> getDogs() async {
     final dogLists = await get('https://dog.ceo/api/breeds/list/all');
+    // final dogLists = await get(' ');
     if (dogLists == null) {
-      print("null fik nay per tel");
       return null;
     }
+
+    if (dogLists['status'] == 'error') return null;
     return AvailableDogs.fromJSON(dogLists);
   }
 }

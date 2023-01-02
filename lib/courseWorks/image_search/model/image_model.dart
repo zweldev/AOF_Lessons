@@ -6,7 +6,7 @@ class ImageModel {
 
   factory ImageModel.fromJSON(Map<String, dynamic> data) {
     final String dogImage = data['message'].toString();
-    print("DogImage link is ${dogImage}");
+    // print("DogImage link is ${dogImage}");
     return ImageModel._(dogImage);
   }
 }

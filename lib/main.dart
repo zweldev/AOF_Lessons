@@ -11,6 +11,7 @@ import 'package:aof_lessons/courseWorks/indicators.dart';
 import 'package:aof_lessons/courseWorks/listtile.dart';
 import 'package:aof_lessons/courseWorks/sizedbox.dart';
 import 'package:aof_lessons/courseWorks/streambuilder.dart';
+import 'package:aof_lessons/courseWorks/testPage.dart';
 import 'package:aof_lessons/courseWorks/willpopscope.dart';
 import 'package:aof_lessons/courseWorks/wrap.dart';
 import 'package:aof_lessons/namedRoutes/genInit.dart';
@@ -22,8 +23,10 @@ import 'namedRoutes/school.dart';
 import 'namedRoutes/unknown.dart';
 
 void main() {
+   WidgetsFlutterBinding.ensureInitialized();
   API_service.instance();
   runApp(MyApp());
+ 
 }
 
 class MyApp extends StatefulWidget {
@@ -116,7 +119,7 @@ class _MyAppState extends State<MyApp> {
           case 'scrollBuilders':
             return MaterialPageRoute(builder: (context) => ScrollBuilders());
 
-            case 'listTileEXP':
+          case 'listTileEXP':
             return MaterialPageRoute(builder: (context) => ListTileEXP());
 
           case 'search/detail':
@@ -124,7 +127,6 @@ class _MyAppState extends State<MyApp> {
                 builder: (builder) =>
                     ImageDetailViewEXP(imgUrl: settings.arguments.toString()));
 
-          
           default:
             print("Route name is ${settings.name}");
             return MaterialPageRoute(builder: (con) => UnknownPageEXP());
@@ -132,10 +134,10 @@ class _MyAppState extends State<MyApp> {
       },
 
       onGenerateInitialRoutes: (initialRoute) =>
-          [MaterialPageRoute(builder: (context) =>StreamBuilderEXP())],
+          [MaterialPageRoute(builder: (context) => ImageSearchViewEXP())],
       // ongenerated initial routes
     );
   }
 }
-
+ 
 // Guide 18 ongenerate route 
