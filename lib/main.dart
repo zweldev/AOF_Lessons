@@ -1,6 +1,8 @@
 import 'package:aof_lessons/ScrollBuilder/scrollBuilders.dart';
 import 'package:aof_lessons/ScrollBuilder/scrollTest.dart';
 import 'package:aof_lessons/ScrollBuilder/singleChildScrollView.dart';
+import 'package:aof_lessons/courseWorks/alert_dialog_exp.dart';
+import 'package:aof_lessons/courseWorks/bottom_sheet.dart';
 import 'package:aof_lessons/courseWorks/futurebuilder.dart';
 import 'package:aof_lessons/courseWorks/image_network.dart';
 import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
@@ -9,7 +11,9 @@ import 'package:aof_lessons/courseWorks/image_search/view/home.dart';
 import 'package:aof_lessons/courseWorks/image_search/view/img_detail.dart';
 import 'package:aof_lessons/courseWorks/indicators.dart';
 import 'package:aof_lessons/courseWorks/listtile.dart';
+import 'package:aof_lessons/courseWorks/safeArea.dart';
 import 'package:aof_lessons/courseWorks/sizedbox.dart';
+import 'package:aof_lessons/courseWorks/snackbar.dart';
 import 'package:aof_lessons/courseWorks/streambuilder.dart';
 import 'package:aof_lessons/courseWorks/testPage.dart';
 import 'package:aof_lessons/courseWorks/willpopscope.dart';
@@ -44,7 +48,7 @@ class _MyAppState extends State<MyApp> {
 
       // initialRoute: 'scrollBuilders',
       // initialRoute: 'scrollTest',
-      initialRoute: 'listTileEXP',
+      // initialRoute: 'listTileEXP',
 
       // initialRoute: 'home',
 
@@ -57,7 +61,7 @@ class _MyAppState extends State<MyApp> {
 
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
-            builder: (context) => GeneratedUnKnownRouteEXP());
+            builder: (context) => AlertDialogEXP());
       },
 
       ///Named Routes
@@ -134,7 +138,7 @@ class _MyAppState extends State<MyApp> {
       },
 
       onGenerateInitialRoutes: (initialRoute) =>
-          [MaterialPageRoute(builder: (context) => ImageSearchViewEXP())],
+          [MaterialPageRoute(builder: (context) => SafeAreaEXP())],
       // ongenerated initial routes
     );
   }

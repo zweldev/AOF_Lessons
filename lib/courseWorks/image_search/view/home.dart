@@ -67,7 +67,7 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
 
   void setData() {
     textCon.text = "Please enter a dog name";
-    setState(() {});
+    // setState(() {});
   }
 
   void insertData(String dataEntry) {
@@ -75,7 +75,7 @@ class _ImageSearchViewEXPState extends State<ImageSearchViewEXP> {
     focusNode.unfocus();
     // _stateCon.sink.add(SearchModel())
 
-    setState(() {});
+    // setState(() {});
   }
 
   Future<void> searchData() async {
