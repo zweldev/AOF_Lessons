@@ -3,6 +3,7 @@ import 'package:aof_lessons/courseWorks/ScrollBuilder/scrollTest.dart';
 import 'package:aof_lessons/courseWorks/ScrollBuilder/singleChildScrollView.dart';
 import 'package:aof_lessons/courseWorks/alert_dialog_exp.dart';
 import 'package:aof_lessons/courseWorks/bottom_sheet.dart';
+import 'package:aof_lessons/courseWorks/contact_app/screen/auth_screen.dart';
 import 'package:aof_lessons/courseWorks/futurebuilder.dart';
 import 'package:aof_lessons/courseWorks/image_network.dart';
 import 'package:aof_lessons/courseWorks/image_search/model/image_model.dart';
@@ -138,7 +139,7 @@ class _MyAppState extends State<MyApp> {
       },
 
       onGenerateInitialRoutes: (initialRoute) =>
-          [MaterialPageRoute(builder: (context) => SafeAreaEXP())],
+          [MaterialPageRoute(builder: (context) => ContactAppAuthScreen())],
       // ongenerated initial routes
     );
   }

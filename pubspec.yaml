@@ -41,6 +41,9 @@ dependencies:
   cached_network_image: ^3.2.3
   photo_view: ^0.14.0
   connectivity_plus: ^3.0.2
+  starlight_utils:
+    git:
+      url: https://github.com/YeMyoAung/starlight_utils.git
 
 dev_dependencies:
   flutter_test:

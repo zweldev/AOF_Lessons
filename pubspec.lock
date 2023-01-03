@@ -364,6 +364,22 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
+  starlight_popup_menu:
+    dependency: transitive
+    description:
+      name: starlight_popup_menu
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3+1"
+  starlight_utils:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "842d6fcc986cbb99d694007c2fa33e818566e758"
+      url: "https://github.com/YeMyoAung/starlight_utils.git"
+    source: git
+    version: "0.0.3"
   stream_channel:
     dependency: transitive
     description:
