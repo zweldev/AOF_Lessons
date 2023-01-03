@@ -1,6 +1,6 @@
-import 'package:aof_lessons/ScrollBuilder/scrollBuilders.dart';
-import 'package:aof_lessons/ScrollBuilder/scrollTest.dart';
-import 'package:aof_lessons/ScrollBuilder/singleChildScrollView.dart';
+import 'package:aof_lessons/courseWorks/ScrollBuilder/scrollBuilders.dart';
+import 'package:aof_lessons/courseWorks/ScrollBuilder/scrollTest.dart';
+import 'package:aof_lessons/courseWorks/ScrollBuilder/singleChildScrollView.dart';
 import 'package:aof_lessons/courseWorks/alert_dialog_exp.dart';
 import 'package:aof_lessons/courseWorks/bottom_sheet.dart';
 import 'package:aof_lessons/courseWorks/futurebuilder.dart';
@@ -11,6 +11,11 @@ import 'package:aof_lessons/courseWorks/image_search/view/home.dart';
 import 'package:aof_lessons/courseWorks/image_search/view/img_detail.dart';
 import 'package:aof_lessons/courseWorks/indicators.dart';
 import 'package:aof_lessons/courseWorks/listtile.dart';
+import 'package:aof_lessons/courseWorks/namedRoutes/bar.dart';
+import 'package:aof_lessons/courseWorks/namedRoutes/home.dart';
+import 'package:aof_lessons/courseWorks/namedRoutes/office.dart';
+import 'package:aof_lessons/courseWorks/namedRoutes/school.dart';
+import 'package:aof_lessons/courseWorks/namedRoutes/unknown.dart';
 import 'package:aof_lessons/courseWorks/safeArea.dart';
 import 'package:aof_lessons/courseWorks/sizedbox.dart';
 import 'package:aof_lessons/courseWorks/snackbar.dart';
@@ -18,13 +23,8 @@ import 'package:aof_lessons/courseWorks/streambuilder.dart';
 import 'package:aof_lessons/courseWorks/testPage.dart';
 import 'package:aof_lessons/courseWorks/willpopscope.dart';
 import 'package:aof_lessons/courseWorks/wrap.dart';
-import 'package:aof_lessons/namedRoutes/genInit.dart';
 import 'package:flutter/material.dart';
-import 'namedRoutes/bar.dart';
-import 'namedRoutes/home.dart';
-import 'namedRoutes/office.dart';
-import 'namedRoutes/school.dart';
-import 'namedRoutes/unknown.dart';
+
 
 void main() {
    WidgetsFlutterBinding.ensureInitialized();
