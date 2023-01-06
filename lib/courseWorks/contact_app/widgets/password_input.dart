@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'package:aof_lessons/courseWorks/contact_app/screen/auth_screen.dart';
 import 'package:aof_lessons/courseWorks/contact_app/utils/style.dart';
 import 'package:flutter/material.dart';
 
@@ -49,3 +48,11 @@ class _PasswordInputState extends State<PasswordInput> {
     );
   }
 }
+
+void meth() {
+  print("dsf");
+}
+
+String name = "ky";
+
+

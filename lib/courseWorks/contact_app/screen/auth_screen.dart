@@ -1,3 +1,6 @@
+import 'package:aof_lessons/courseWorks/contact_app/model/user_model.dart';
+import 'package:aof_lessons/courseWorks/contact_app/service/auth.dart';
+import 'package:aof_lessons/courseWorks/contact_app/utils/constant.dart';
 import 'package:aof_lessons/courseWorks/contact_app/widgets/password_input.dart';
 import 'package:flutter/material.dart';
 import 'package:starlight_utils/starlight_utils.dart';
@@ -17,23 +20,38 @@ class _ContactAppAuthScreenState extends State<ContactAppAuthScreen> {
   FocusNode userNameF = FocusNode();
   FocusNode passwordF = FocusNode();
   FocusNode conPasswordF = FocusNode();
+  int buildTime = 0;
+  ContactAppAuthService authService = ContactAppAuthService();
+
+  Future<void> register() async {
+    if (formKey.currentState!.validate() != true) return;
+    await authService.register(
+        ContactAppUser(username: usernameCon.text, pass: passwordCon.text)
+        );
+    Navigator.of(context).pushNamedAndRemoveUntil(SECURITY, (route) => false);
+  }
 
   @override
   Widget build(BuildContext context) {
+    buildTime++;
+    print("Screen Buildtime is $buildTime");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Form(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          // autovalidateMode: AutovalidateMode.onUserInteraction,
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
-                  return value?.isEmail == true
-                      ? null
+                  return value?.isNotEmpty == true
+                      ? authService.exist.contains(value)
+                          ? 'User already exist'
+                          : null
                       : "Please enter an email";
                 },
                 onEditingComplete: () {
@@ -70,9 +88,25 @@ class _ContactAppAuthScreenState extends State<ContactAppAuthScreen> {
                 hint: "Confirm Password",
                 textControl: conPasswordCon,
                 fnode: conPasswordF,
-                onEditingFunc: () {},
+                onEditingFunc: register,
               ),
-              ElevatedButton(onPressed: () {}, child: Text("Submit"))
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                  width: double.infinity,
+                  height: 40,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        
+                        if (formKey.currentState!.validate() != true) return;
+                        await authService.register(ContactAppUser(
+                            username: usernameCon.text,
+                            pass: passwordCon.text));
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            SECURITY, (route) => false);
+                      },
+                      child: Text("Submit")))
             ],
           ),
         ),

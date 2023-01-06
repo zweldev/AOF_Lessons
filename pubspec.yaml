@@ -44,6 +44,11 @@ dependencies:
   starlight_utils:
     git:
       url: https://github.com/YeMyoAung/starlight_utils.git
+  localstore: ^1.3.4
+  provider: ^6.0.5
+  starlight_http_cached: 
+    git:
+      url: https://github.com/YeMyoAung/starlight_http_cached.git
 
 dev_dependencies:
   flutter_test:
