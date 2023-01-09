@@ -41,7 +41,7 @@ class ContactAppUser {
     );
   }
 
-  //non-crpted values GETTERs
+  //non-crypted values GETTERs
   //(to be used in fetching data from Database {datas fetched from database can't be hashed because it will be hashed again})
   String get password => _password;
   String? get question1 => _question1;
@@ -60,7 +60,7 @@ class ContactAppUser {
   String? get cryptQuestion3 =>
       _question3 == null ? null : _convert(_question3!);
 
-  factory ContactAppUser.fromDynamic(dynamic data) {
+  factory ContactAppUser.fromDynamic    (dynamic data) {
     return ContactAppUser(
         username: data['username'],
         pass: data['password'],

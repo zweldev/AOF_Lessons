@@ -2,6 +2,7 @@ import 'package:aof_lessons/courseWorks/contact_app/model/user_model.dart';
 import 'package:aof_lessons/courseWorks/contact_app/service/auth.dart';
 import 'package:aof_lessons/courseWorks/contact_app/utils/constant.dart';
 import 'package:aof_lessons/courseWorks/contact_app/widgets/password_input.dart';
+import 'package:aof_lessons/courseWorks/contact_app/widgets/textField.dart';
 import 'package:flutter/material.dart';
 import 'package:starlight_utils/starlight_utils.dart';
 
@@ -26,8 +27,7 @@ class _ContactAppAuthScreenState extends State<ContactAppAuthScreen> {
   Future<void> register() async {
     if (formKey.currentState!.validate() != true) return;
     await authService.register(
-        ContactAppUser(username: usernameCon.text, pass: passwordCon.text)
-        );
+        ContactAppUser(username: usernameCon.text, pass: passwordCon.text));
     Navigator.of(context).pushNamedAndRemoveUntil(SECURITY, (route) => false);
   }
 
@@ -40,13 +40,13 @@ class _ContactAppAuthScreenState extends State<ContactAppAuthScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Form(
-          // autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+              ContactAppInput(
+                
                 validator: (value) {
                   return value?.isNotEmpty == true
                       ? authService.exist.contains(value)
@@ -54,14 +54,29 @@ class _ContactAppAuthScreenState extends State<ContactAppAuthScreen> {
                           : null
                       : "Please enter an email";
                 },
-                onEditingComplete: () {
-                  passwordF.requestFocus();
-                  // setState(() {});
-                },
                 controller: usernameCon,
-                decoration: InputDecoration(
-                    hintText: "Username", border: OutlineInputBorder()),
+                focusNode: userNameF,
+                hintText: "Username",
               ),
+
+              // TextFormField(
+                // autovalidateMode: AutovalidateMode.onUserInteraction,
+              //   validator:
+              // (value) {
+              //     return value?.isNotEmpty == true
+              //         ? authService.exist.contains(value)
+              //             ? 'User already exist'
+              //             : null
+              //         : "Please enter an email";
+              //   },
+              //   onEditingComplete: () {
+              //     passwordF.requestFocus();
+              //     // setState(() {});
+              //   },
+              //   controller: usernameCon,
+              //   decoration: InputDecoration(
+              //       hintText: "Username", border: OutlineInputBorder()),
+              // ),
               SizedBox(
                 height: 10,
               ),
@@ -98,7 +113,6 @@ class _ContactAppAuthScreenState extends State<ContactAppAuthScreen> {
                   height: 40,
                   child: ElevatedButton(
                       onPressed: () async {
-                        
                         if (formKey.currentState!.validate() != true) return;
                         await authService.register(ContactAppUser(
                             username: usernameCon.text,

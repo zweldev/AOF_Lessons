@@ -6,7 +6,7 @@ import 'package:aof_lessons/courseWorks/bottom_sheet.dart';
 import 'package:aof_lessons/courseWorks/contact_app/model/user_model.dart';
 import 'package:aof_lessons/courseWorks/contact_app/screen/auth_screen.dart';
 import 'package:aof_lessons/courseWorks/contact_app/screen/home_screen.dart';
-import 'package:aof_lessons/courseWorks/contact_app/screen/security_question.dart';
+import 'package:aof_lessons/courseWorks/contact_app/screen/security_question_screen.dart';
 import 'package:aof_lessons/courseWorks/contact_app/service/auth.dart';
 import 'package:aof_lessons/courseWorks/contact_app/utils/constant.dart';
 import 'package:aof_lessons/courseWorks/futurebuilder.dart';
@@ -26,6 +26,7 @@ import 'package:aof_lessons/courseWorks/provider_lesson/change_notifier_home.dar
 import 'package:aof_lessons/courseWorks/provider_lesson/provider/change_notifier_provider.dart';
 import 'package:aof_lessons/courseWorks/provider_lesson/provider/iProvider.dart';
 import 'package:aof_lessons/courseWorks/provider_lesson/provider_home.dart';
+import 'package:aof_lessons/courseWorks/provider_lesson/provider_home_exp.dart';
 import 'package:aof_lessons/courseWorks/safeArea.dart';
 import 'package:aof_lessons/courseWorks/sizedbox.dart';
 import 'package:aof_lessons/courseWorks/snackbar.dart';
@@ -45,7 +46,7 @@ Future<void> main() async {
   // ContactAppAuthService.logOut();
   print(
       ContactAppUser(username: "Kyaw Kyaw", pass: "zwelhtet44").cryptPassword);
-  print("Cached is ${StarlightHttpCached.getCached(name: AUTH)}");
+  print("Cached is ${StarlightHttpCached.getCached(name: AUTH).runtimeType}");
   API_service.instance();
   runApp(MyApp());
 }
@@ -166,18 +167,29 @@ class _MyAppState extends State<MyApp> {
           },
           onGenerateInitialRoutes: (initialRoute) => [
                 MaterialPageRoute(builder: (context) {
-                  try {
-                    // if there is no cache , 'StarlightHttpCached.getCached(name: AUTH)' will throw ERROR
-                    return ContactAppUser.fromDynamic(
-                                    StarlightHttpCached.getCached(name: AUTH))
-                                .question1 ==
-                            null
-                        ? ContactSecurityQuestion()
-                        : ContactAppHomeScreen();
-                  } catch (val) {
-                    // if 'StarlightHttpCached.getCached(name: AUTH)' , throw below
-                    return ContactAppAuthScreen();
-                  }
+                  return FutureBuilder<RamDon>(
+                    initialData: RamDon("You Monkey!"),
+                    future: timer(),  
+                    builder: (context, snapshot) {
+                      print("Data has changed ${snapshot.data?.name}");
+                      return Provider.value(
+                        value: snapshot.data ,
+                        child: ProviderHomeExp(),
+                      );
+                    },
+                  ); 
+                  // try {
+                  //   // if there is no cache , 'StarlightHttpCached.getCached(name: AUTH)' will throw ERROR
+                  //   return ContactAppUser.fromDynamic(
+                  //                   StarlightHttpCached.getCached(name: AUTH))
+                  //               .question1 ==
+                  //           null
+                  //       ? ContactSecurityQuestion()
+                  //       : ContactAppHomeScreen();
+                  // } catch (val) {
+                  //   // if 'StarlightHttpCached.getCached(name: AUTH)' return null, throw below
+                  //   return ContactAppAuthScreen();
+                  // }
                 })
               ]
           // ongenerated initial routes
@@ -186,5 +198,14 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+class RamDon {
+  String name;
+  RamDon(this.name);
+}
+
+Future<RamDon> timer() async {
+  await Future.delayed(Duration(seconds: 5));
+  return RamDon("Uncle Gyi");
+}
  
-// Guide 24, Zoom 1:07 (ContactAppSecurityScreen UI)
+// Guide 24, Zoom 1:18 (ContactAppSecurityScreen UI) (input form ရေးရန်)
